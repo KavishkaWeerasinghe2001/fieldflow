@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FieldFlow
 
-## Getting Started
+FieldFlow is a full-stack Field Service Management System developed as an individual project for the Codezela Career Accelerator Full-Stack Developer Internship.
 
-First, run the development server:
+The system is designed to help service-based organizations manage customers, technicians, service work orders, technician assignments, job progress, and service history from one web application.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Purpose
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Many service organizations still manage field-service work using phone calls, messaging applications, spreadsheets, and manual records.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This can create problems such as:
 
-## Learn More
+- Missed or delayed service requests
+- Unclear technician assignments
+- Poor visibility of job progress
+- Difficulty finding customer service history
+- Difficulty reviewing completed work
 
-To learn more about Next.js, take a look at the following resources:
+FieldFlow aims to provide a simple centralized system for managing this workflow.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Main Users
 
-## Deploy on Vercel
+FieldFlow contains three primary user roles.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Administrator
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The Administrator can:
+
+- Manage users
+- Manage user roles
+- View all system records
+- Access the full dashboard
+
+### Dispatcher
+
+The Dispatcher can:
+
+- Create and manage customers
+- Create and manage technicians
+- Create work orders
+- Assign technicians
+- Track work-order status
+- Track work-order priority
+
+### Technician
+
+The Technician can:
+
+- View assigned jobs
+- Start assigned work
+- Update job progress
+- Add completion notes
+- Complete assigned jobs
+
+Technicians must only be able to access jobs assigned to them.
+
+---
+
+## Core Workflow
+
+The main FieldFlow workflow is:
+
+1. Dispatcher signs in.
+2. Dispatcher creates or selects a customer.
+3. Dispatcher creates a work order.
+4. Dispatcher assigns a technician and scheduled date.
+5. Technician signs in.
+6. Technician views the assigned job under My Jobs.
+7. Technician starts the job.
+8. Technician adds progress updates.
+9. Technician enters completion notes.
+10. Technician completes the job.
+11. Dashboard and work-order history update using stored database data.
+
+This workflow is the main acceptance path for the project.
+
+---
+
+## Mandatory Modules
+
+The project contains six mandatory areas:
+
+1. Authentication
+2. Role-Based Access Control
+3. Customers
+4. Technicians
+5. Work Orders
+6. Dashboard
+
+Optional features will only be considered after the mandatory core system is complete.
+
+---
+
+## Required Technology Stack
+
+The project is planned around the following technology stack:
+
+| Area | Technology |
+|---|---|
+| Runtime | Node.js LTS and npm |
+| Framework | Next.js App Router with React |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Authentication | Better Auth |
+| Database | PostgreSQL hosted on Neon |
+| ORM | Prisma |
+| Validation | Zod |
+| Testing | Playwright |
+| Deployment | Vercel or another approved Next.js host |
+| Version Control | Git and GitHub |
+
+> Note: Some technologies listed above will be configured during later development weeks.
+
+---
+
+## Main Pages
+
+The planned main pages are:
+
+- `/login`
+- `/dashboard`
+- `/users`
+- `/customers`
+- `/technicians`
+- `/work-orders`
+- `/work-orders/new`
+- `/work-orders/[id]`
+- `/my-jobs`
+
+---
+
+## Initial Data Model
+
+The initial Week 1 data model contains the following entities:
+
+- User
+- Customer
+- Technician
+- WorkOrder
+- WorkOrderActivity
+
+Main relationships:
+
+```text
+User 1 -------- 0..1 Technician
+
+Customer 1 -------- * WorkOrder
+
+Technician 1 -------- * WorkOrder
+
+WorkOrder 1 -------- * WorkOrderActivity
+
+User 1 -------- * WorkOrderActivity
