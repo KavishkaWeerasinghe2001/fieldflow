@@ -1,7 +1,10 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { DashboardNav } from "@/components/dashboard-nav";
 import { auth } from "@/lib/auth";
+
+type UserRole = "ADMIN" | "DISPATCHER" | "TECHNICIAN";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
@@ -12,9 +15,13 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
+  const role = session.user.role as UserRole;
+
   return (
     <main className="min-h-screen bg-gray-100 p-8">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-5xl space-y-6">
+        <DashboardNav role={role} />
+
         <div className="rounded-xl bg-white p-8 shadow-sm">
           <h1 className="text-3xl font-bold text-gray-900">
             FieldFlow Dashboard
