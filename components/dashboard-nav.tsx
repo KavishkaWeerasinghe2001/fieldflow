@@ -33,44 +33,69 @@ export function DashboardNav({ role }: DashboardNavProps) {
 
         {role === "ADMIN" && (
           <>
-            <span className="rounded-lg bg-gray-100 px-4 py-2 text-sm">
-              Users
-            </span>
+                <Link
+                  href="/users"
+                  className="rounded-lg bg-gray-100 px-4 py-2 text-sm"
+                >
+                  Users
+                </Link>
 
-            <span className="rounded-lg bg-gray-100 px-4 py-2 text-sm">
-              Customers
-            </span>
+                <Link
+                  href="/customers"
+                  className="rounded-lg bg-gray-100 px-4 py-2 text-sm"
+                >
+                  Customers
+                </Link>
 
-            <span className="rounded-lg bg-gray-100 px-4 py-2 text-sm">
-              Technicians
-            </span>
+                <Link
+                  href="/technicians"
+                  className="rounded-lg bg-gray-100 px-4 py-2 text-sm"
+                >
+                  Technicians
+                </Link>
 
-            <span className="rounded-lg bg-gray-100 px-4 py-2 text-sm">
-              Work Orders
-            </span>
+                <Link
+                  href="/work-orders"
+                  className="rounded-lg bg-gray-100 px-4 py-2 text-sm"
+                >
+                  Work Orders
+                </Link>
           </>
         )}
 
+
         {role === "DISPATCHER" && (
           <>
-            <span className="rounded-lg bg-gray-100 px-4 py-2 text-sm">
-              Customers
-            </span>
+                <Link
+                  href="/customers"
+                  className="rounded-lg bg-gray-100 px-4 py-2 text-sm"
+                >
+                  Customers
+                </Link>
 
-            <span className="rounded-lg bg-gray-100 px-4 py-2 text-sm">
-              Technicians
-            </span>
+                <Link
+                  href="/technicians"
+                  className="rounded-lg bg-gray-100 px-4 py-2 text-sm"
+                >
+                  Technicians
+                </Link>
 
-            <span className="rounded-lg bg-gray-100 px-4 py-2 text-sm">
-              Work Orders
-            </span>
+                <Link
+                  href="/work-orders"
+                  className="rounded-lg bg-gray-100 px-4 py-2 text-sm"
+                >
+                  Work Orders
+                </Link>
           </>
         )}
 
         {role === "TECHNICIAN" && (
-          <span className="rounded-lg bg-gray-100 px-4 py-2 text-sm">
+          <Link
+            href="/my-jobs"
+            className="rounded-lg bg-gray-100 px-4 py-2 text-sm"
+          >
             My Jobs
-          </span>
+          </Link>
         )}
 
         <button
